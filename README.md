@@ -77,6 +77,13 @@ Might look great on your VSCode, while you're writting your readme.md. But once 
 
 Initial release of my very first VS Code Extension.
 
+### 0.1.0
+
+First minor update after some testing.
+
+-   Trim whitespaces on beginning and ending of title
+-   Added Titles to repo.
+
 ## Thoughts?
 
 Anyone that is keen to collaborate is welcome. Feel free to send me a message or drop an issue and we can build stuff together.
