@@ -1,3 +1,19 @@
+```
+       ______     ______     _____     ______
+      /\  ___\   /\  __ \   /\  __-.  /\  ___\
+      \ \ \____  \ \ \/\ \  \ \ \/\ \ \ \  __\
+       \ \_____\  \ \_____\  \ \____-  \ \_____\
+        \/_____/   \/_____/   \/____/   \/_____/
+
+ ______   __     ______   __         ______     ______
+/\__  _\ /\ \   /\__  _\ /\ \       /\  ___\   /\  == \
+\/_/\ \/ \ \ \  \/_/\ \/ \ \ \____  \ \  __\   \ \  __<
+   \ \_\  \ \_\    \ \_\  \ \_____\  \ \_____\  \ \_\ \_\
+    \/_/   \/_/     \/_/   \/_____/   \/_____/   \/_/ /_/
+
+
+```
+
 # Code Titler
 
 This is a simple extension to create uniform titles and subtitles for your code blocks directly on VSCode.
@@ -57,7 +73,7 @@ Might look great on your VSCode, while you're writting your readme.md. But once 
 
 ## Release Notes
 
-### 1.0.0
+### 0.0.1
 
 Initial release of my very first VS Code Extension.
 
@@ -66,11 +82,3 @@ Initial release of my very first VS Code Extension.
 Anyone that is keen to collaborate is welcome. Feel free to send me a message or drop an issue and we can build stuff together.
 
 I know that this is a simple extension but I hope it help keeping devs codes organised.
-
-```
-  _________  ___  ____  __________________   _______
- / ___/ __ \/ _ \/ __/ /_  __/  _/_  __/ /  / __/ _ \
-/ /__/ /_/ / // / _/    / / _/ /  / / / /__/ _// , _/
-\___/\____/____/___/   /_/ /___/ /_/ /____/___/_/|_|
-
-```

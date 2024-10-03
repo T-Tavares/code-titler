@@ -1,9 +1,12 @@
 import * as vscode from 'vscode';
-
 import {getLine, getFileLanguage} from './helpers';
 import {getSubtitle, getTitle} from './functions';
 
 export function activate(context: vscode.ExtensionContext) {
+    // ------------------------------------------------------ //
+    // ------------- SUBTITLE KEYBINDED FUNCTION ------------ //
+    // ------------------------------------------------------ //
+
     const keySubtitle = vscode.commands.registerCommand('code-titler.key-getSubtitle', () => {
         const editor = vscode.window.activeTextEditor;
         if (editor) {
@@ -16,6 +19,9 @@ export function activate(context: vscode.ExtensionContext) {
             });
         }
     });
+    // ------------------------------------------------------ //
+    // -------------- TITLE KEYBINDED FUNCTION  ------------- //
+    // ------------------------------------------------------ //
 
     const keyTitle = vscode.commands.registerCommand('code-titler.key-getTitle', () => {
         const editor = vscode.window.activeTextEditor;
@@ -30,14 +36,19 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
-    const inputSubtitle = vscode.workspace.onDidChangeTextDocument(async event => {
+    // ------------------------------------------------------ //
+    // ---------- SUBTITLE - $ST "SNIPPET" FUNCTION --------- //
+    // ------------------------------------------------------ //
+
+    const inputCodeTitler = vscode.workspace.onDidChangeTextDocument(async event => {
         const editor = vscode.window.activeTextEditor;
 
         if (editor && event.contentChanges.length > 0) {
             const {selection, text} = getLine(editor);
             const language = getFileLanguage(editor);
 
-            if (text === '$st') {
+            // ------------------ SUBTITLE TRIGGER ------------------ //
+            if (text.trim() === '$st') {
                 setTimeout(async () => {
                     const subtitleInput = await vscode.window.showInputBox({
                         title: 'Subtitle',
@@ -48,7 +59,9 @@ export function activate(context: vscode.ExtensionContext) {
                     const subtitle = getSubtitle(subtitleInput, language);
                     editor.edit(editBuilder => editBuilder.replace(selection, subtitle));
                 }, 100);
-            } else if (text === '$t') {
+
+                // -------------------- TITLE TRIGGER ------------------- //
+            } else if (text.trim() === '$t') {
                 setTimeout(async () => {
                     const titleInput = await vscode.window.showInputBox({
                         title: 'Title',
@@ -63,7 +76,11 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
-    context.subscriptions.push(inputSubtitle, keySubtitle, keyTitle);
+    // ------------------------------------------------------ //
+    // ------------------ EXPORT FUNCTIONS ------------------ //
+    // ------------------------------------------------------ //
+
+    context.subscriptions.push(inputCodeTitler, keySubtitle, keyTitle);
 }
 
 export function deactivate() {}
