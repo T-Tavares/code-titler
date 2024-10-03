@@ -3,6 +3,9 @@
     "displayName": "Code-Titler",
     "description": "A simple extension to add titles and subtitles to your code blocks in VS Code.",
     "version": "0.0.1",
+    "author": {
+        "name": "Thiago Tavares"
+    },
     "engines": {
         "vscode": "^1.93.0"
     },

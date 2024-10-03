@@ -4,27 +4,6 @@ import {getLine, getFileLanguage} from './helpers';
 import {getSubtitle, getTitle} from './functions';
 
 export function activate(context: vscode.ExtensionContext) {
-    // [X] Function for title
-    // [X] Function for subtitle
-
-    // [X] Register command for title
-    // [X] Register command for subtitle
-
-    // [X] Create Keybinding for title
-    // [X] Create Keybinding for subtitle
-
-    // [X] Find a way to bind a snippet with the vscode.commands that triggers the getTitle and getSubtitle
-    //  Create a snippet for title
-    //  Create a snippet for subtitle
-
-    // [X] Separate files for functions
-
-    // [X] Find a way to create a settings file for size
-
-    // [X] Recognise the language of the file and change the comment style accordingly
-
-    // [ ] Publish the extension v1.0.0
-
     const keySubtitle = vscode.commands.registerCommand('code-titler.key-getSubtitle', () => {
         const editor = vscode.window.activeTextEditor;
         if (editor) {

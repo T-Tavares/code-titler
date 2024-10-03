@@ -1,71 +1,76 @@
-# code-title README
+# Code Titler
 
-This is the README for your extension "code-title". After writing up a brief description, we recommend including the following sections.
+This is a simple extension to create uniform titles and subtitles for your code blocks directly on VSCode.
+
+The titles and subtitles will have the same length. That helps to identify sections and subsections on your code.
+
+I come from a art background, so I'm very visual with my code organisation. (Some call it OCD.)
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+There are two ways to build your titles and subtitles.
 
-For example if there is an image subfolder under your extension project workspace:
+-   1 With a shortcut
 
-\!\[feature X\]\(images/feature-x.png\)
+    ```
+    Subtitle => (Ctrl + Cmd + / ) for Mac users
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+    Subtitle => (Ctrl + Alt + / ) for Windows users
 
-## Requirements
+    Title => (Ctrl + Shift + Cmd + / ) for Mac users
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+    Title => (Ctrl + Shift + Alt + / ) for Windows users
+    ```
+
+-   2 With a "snippet" shortcut
+
+    ```
+    Subtitle => $st
+
+    Title => $t
+    ```
+
+    Once you type those snippets an input prompt will open.
+    Whatever you type in there after you press enter will be your new subtitle
+
+![Code Titler - Example TS](./public/code-titler-ts.gif)
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+You can change the fill, length and personalise open and close tabs.
 
-For example:
+open and close tabs => are the syntax for whatever language you are using.
 
-This extension contributes the following settings:
+fill => is gonna take the "blank space" necessary to keep all your titles and subtitles to the same size.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+Personalised tags => In case there are another language and syntax that is not supported yet. Fell free to change on those settings.
+
+![Code Titler - Settigns](./public/code-titler-settings.gif)
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+For now if you use more than one character on the fill the titles will get a different lenght. I'm planning on fixing that for version 2
+
+Because of a the font sizes on VSCode vs Github, this extension will not work well on .md files.
+
+Might look great on your VSCode, while you're writting your readme.md. But once You push it to github I'll get some random sizes for each part of the titles.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
+Initial release of my very first VS Code Extension.
 
-### 1.0.1
+## Thoughts?
 
-Fixed issue #.
+Anyone that is keen to collaborate is welcome. Feel free to send me a message or drop an issue and we can build stuff together.
 
-### 1.1.0
+I know that this is a simple extension but I hope it help keeping devs codes organised.
 
-Added features X, Y, and Z.
+```
+  _________  ___  ____  __________________   _______
+ / ___/ __ \/ _ \/ __/ /_  __/  _/_  __/ /  / __/ _ \
+/ /__/ /_/ / // / _/    / / _/ /  / / / /__/ _// , _/
+\___/\____/____/___/   /_/ /___/ /_/ /____/___/_/|_|
 
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+```
