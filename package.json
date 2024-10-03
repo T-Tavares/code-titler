@@ -2,12 +2,12 @@
     "name": "code-titler",
     "displayName": "Code Titler",
     "description": "A simple extension to add titles and subtitles to your code blocks in VS Code.",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "publisher": "T-Tavares",
     "author": {
         "name": "Thiago Tavares"
     },
-    "icon": "/src/assets/code-titler-icon.ico",
+    "icon": "./code-titler/src/assets/code-titler-icon.png",
     "engines": {
         "vscode": "^1.93.0"
     },
