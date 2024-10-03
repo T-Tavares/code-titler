@@ -1,0 +1,113 @@
+{
+    "name": "code-titler",
+    "displayName": "Code-Titler",
+    "description": "A simple extension to add titles and subtitles to your code blocks in VS Code.",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.93.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "keybindings": [
+            {
+                "command": "code-titler.key-getTitle",
+                "key": "ctrl+shift+alt+/",
+                "mac": "ctrl+shift+cmd+/",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "code-titler.key-getSubtitle",
+                "key": "ctrl+alt+/",
+                "mac": "ctrl+cmd+/",
+                "when": "editorTextFocus"
+            }
+        ],
+        "commands": [
+            {
+                "command": "code-titler.key-getTitle",
+                "title": "Titeliser - Title"
+            },
+            {
+                "command": "code-titler.key-getSubtitle",
+                "title": "Titeliser - Subtitle"
+            },
+            {
+                "command": "code-titler.input-getTitle",
+                "title": "Titeliser - Title"
+            },
+            {
+                "command": "code-titler.input-getSubtitle",
+                "title": "Titeliser - Subtitle"
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "CodeTitler",
+            "properties": {
+                "code-titler.length": {
+                    "type": "number",
+                    "default": 60,
+                    "description": "The length of the title or subtitle.",
+                    "order": 1
+                },
+                "code-titler.fill": {
+                    "type": "string",
+                    "default": "-",
+                    "description": "Character(s) to fill the title or subtitle blank spaces.",
+                    "order": 2
+                },
+                "code-titler.personalisedTags": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Allow personalised open and close tags for the title and subtitle.",
+                    "order": 3
+                },
+                "code-titler.openTag": {
+                    "type": "string",
+                    "default": "//",
+                    "description": "Personalised open tag for the title and subtitle",
+                    "order": 4
+                },
+                "code-titler.closeTag": {
+                    "type": "string",
+                    "default": "//",
+                    "description": "Personalised close tag for the title and subtitle",
+                    "order": 5
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run package",
+        "compile": "npm run check-types && npm run lint && node esbuild.js",
+        "watch": "npm-run-all -p watch:*",
+        "watch:esbuild": "node esbuild.js --watch",
+        "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+        "package": "npm run check-types && npm run lint && node esbuild.js --production",
+        "compile-tests": "tsc -p . --outDir out",
+        "watch-tests": "tsc -p . -w --outDir out",
+        "pretest": "npm run compile-tests && npm run compile && npm run lint",
+        "check-types": "tsc --noEmit",
+        "lint": "eslint src",
+        "test": "vscode-test"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.93.0",
+        "@types/mocha": "^10.0.8",
+        "@types/node": "20.x",
+        "@typescript-eslint/eslint-plugin": "^8.7.0",
+        "@typescript-eslint/parser": "^8.7.0",
+        "eslint": "^9.11.1",
+        "esbuild": "^0.24.0",
+        "npm-run-all": "^4.1.5",
+        "typescript": "^5.6.2",
+        "@vscode/test-cli": "^0.0.10",
+        "@vscode/test-electron": "^2.4.1"
+    }
+}
