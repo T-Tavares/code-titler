@@ -33,7 +33,7 @@ There are two ways to build your titles and subtitles.
     Once you type those snippets an input prompt will open.
     Whatever you type in there after you press enter will be your new subtitle
 
-![Code Titler - Example TS](./public/code-titler-ts.gif)
+![Code Titler - Example TS](./src/assets/code-titler-ts.gif)
 
 ## Extension Settings
 
@@ -45,7 +45,7 @@ fill => is gonna take the "blank space" necessary to keep all your titles and su
 
 Personalised tags => In case there are another language and syntax that is not supported yet. Fell free to change on those settings.
 
-![Code Titler - Settigns](./public/code-titler-settings.gif)
+![Code Titler - Settigns](./src/assets/code-titler-settings.gif)
 
 ## Known Issues
 
