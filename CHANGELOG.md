@@ -4,10 +4,12 @@ All notable changes to the "code-title" extension will be documented in this fil
 This is a initial release. If you find any bug or if you have any suggestion I'll be happy to check.
 Open an Github Issue and let's make this extension better.
 
-## Fixed
+## Updates
 
--   Trims titles empty spaces from beginning and end.
+-   Add colour and style to your titles and subtitles
 
 ## Unreleased
 
 -   Keep Code on the same identation it was created/called.
+-   Accept more than one character on the title filling setting.
+-   Recalculate size of current titles.

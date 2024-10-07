@@ -67,23 +67,51 @@
                     "description": "Character(s) to fill the title or subtitle blank spaces.",
                     "order": 2
                 },
+                "code-titler.fontColour": {
+                    "type": "string",
+                    "default": "none",
+                    "description": "Changes the colour of the title and subtitle.\nThis setting accepts any CSS colour value (name, hex, rgba). ex: 'red', '#ff0000', 'rgb(255, 0, 0, 0.5)'.",
+                    "order": 3
+                },
+                "code-titler.backgroundColour": {
+                    "type": "string",
+                    "default": "none",
+                    "description": "Changes the background colour of the title and subtitle.\nThis setting accepts any CSS colour value (name, hex, rgba). ex: 'red', '#ff0000', 'rgb(255, 0, 0, 0.5)'.",
+                    "order": 4
+                },
+                "code-titler.fontWeight": {
+                    "type": "string",
+                    "default": "normal",
+                    "description": "Changes the font weight of the title and subtitle.\nThis setting accepts any CSS font-weight value. ex: 'normal', 'bold', 'bolder', 'lighter', '100', '200', '300', '400', '500', '600', '700', '800', '900'.",
+                    "order": 5
+                },
+                "code-titler.fontStyle": {
+                    "type": "string",
+                    "default": "normal",
+                    "enum": [
+                        "normal",
+                        "italic"
+                    ],
+                    "description": "Changes the font style of the title and subtitle.\nThis setting accepts two CSS font-style value. ex: 'normal', 'italic'.",
+                    "order": 6
+                },
                 "code-titler.personalisedTags": {
                     "type": "boolean",
                     "default": false,
                     "description": "Allow personalised open and close tags for the title and subtitle.",
-                    "order": 3
+                    "order": 7
                 },
                 "code-titler.openTag": {
                     "type": "string",
                     "default": "//",
                     "description": "Personalised open tag for the title and subtitle",
-                    "order": 4
+                    "order": 8
                 },
                 "code-titler.closeTag": {
                     "type": "string",
                     "default": "//",
                     "description": "Personalised close tag for the title and subtitle",
-                    "order": 5
+                    "order": 9
                 }
             }
         }

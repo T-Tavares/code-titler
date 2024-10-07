@@ -10,6 +10,13 @@ export interface VSCodeLine {
     selection: vscode.Range;
     text: string;
 }
+
+export interface DecorationOptions {
+    colour?: string;
+    fontWeight?: string;
+    backgroundColour?: string;
+}
+
 // ------------------- LANGUAGE TYPES ------------------- //
 
 export interface Languages {
@@ -40,4 +47,5 @@ export interface Languages {
     lisp: {open: string; close: string};
     lua: {open: string; close: string};
     perl: {open: string; close: string};
+    personalised: {open: string; close: string};
 }

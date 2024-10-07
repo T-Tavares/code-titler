@@ -1,7 +1,47 @@
+import * as vscode from 'vscode';
+import type {TextEditorDecorationType} from 'vscode';
 import type {VSCodeDocument, VSCodeEditor, VSCodeLine, VSCodeRange, Languages} from './types';
+
+// ------------- GET SETTINGS CONFIGURATION ------------- //
+
+/**
+ * Gets the current settings configuration variables
+ * @returns An object with all the settings configuration variables
+ * Can be used with destructuring to get individual settings ( Like on React Hooks)
+ * e.g. const {length, fill} = getConfigSettings();
+ *
+ */
+export const getConfigSettings = () => {
+    const config = vscode.workspace.getConfiguration('code-titler');
+    const personalisedTags = config.get<boolean>('personalisedTags', false);
+
+    const length = config.get<number>('length', 60);
+    const fill = config.get<string>('fill', '-');
+    const openTag = config.get<string>('openTag', '//');
+    const closeTag = config.get<string>('closeTag', '//');
+
+    const fontColour = config.get<string>('fontColour', 'none');
+    const backgroundColour = config.get<string>('backgroundColour', 'none');
+    const fontWeight = config.get<string>('fontWeight', 'none');
+    const fontStyle = config.get<string>('fontStyle', 'none');
+
+    return {
+        config,
+        personalisedTags,
+        length,
+        fill,
+        openTag,
+        closeTag,
+        fontColour,
+        backgroundColour,
+        fontWeight,
+        fontStyle,
+    };
+};
 
 // ----------------- AVAILABLE LANGUAGES ---------------- //
 
+const {openTag, closeTag} = getConfigSettings();
 export const LANGUAGES: Languages = {
     javascript: {open: '//', close: '//'},
     typescript: {open: '//', close: '//'},
@@ -30,9 +70,11 @@ export const LANGUAGES: Languages = {
     lisp: {open: ';', close: ';'},
     lua: {open: '--', close: '--'},
     perl: {open: '#', close: '#'},
+    personalised: {open: `${openTag}`, close: `${closeTag}`},
 };
+
 // ------------------------------------------------------ //
-// ------------ VSCODE API HELPER FUNCTIONS ------------- //
+// ------------- VSCODE API DOCUMENT HELPERS ------------ //
 // ------------------------------------------------------ //
 
 /**
@@ -58,4 +100,30 @@ export const getLine = (editor: VSCodeEditor): VSCodeLine => {
 export const getFileLanguage = (editor: VSCodeEditor): keyof Languages => {
     const document: VSCodeDocument = editor.document;
     return document.languageId as keyof Languages;
+};
+
+// ------------------------------------------------------ //
+// ------------ VSCODE API DECORATION HELPERS ----------- //
+// ------------------------------------------------------ //
+
+/**
+ *
+ * @param options Object with the following properties:
+ * - colour: The colour of the decoration
+ * - fontWeight: The font weight of the decoration
+ * - backgroundColour: The background colour of the decoration
+ * They all follow the same format as CSS, e.g. 'red', 'rgb(255, 0, 0)', '#ff0000'
+ * @returns A TextEditorDecorationType object
+ */
+export const getDecoration = (): TextEditorDecorationType => {
+    // ------------- GET SETTINGS CONFIGURATION ------------- //
+    const {fontColour, backgroundColour, fontWeight, fontStyle} = getConfigSettings();
+
+    return vscode.window.createTextEditorDecorationType({
+        color: fontColour,
+        backgroundColor: backgroundColour,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        textDecoration: 'none',
+    });
 };

@@ -1,8 +1,29 @@
 import * as vscode from 'vscode';
-import {getLine, getFileLanguage} from './helpers';
-import {getSubtitle, getTitle} from './functions';
+import {getSubtitle, getTitle, decorateTitlesAndSubtitles} from './functions';
+import {getFileLanguage, getLine} from './helpers';
 
 export function activate(context: vscode.ExtensionContext) {
+    // ------------------------------------------------------ //
+    // ------------------- EVENT LISTENERS ------------------ //
+    // ------------- TO UPDATE TITLES DECORATION ------------ //
+    // ------------------------------------------------------ //
+
+    const decorateOnChange = vscode.workspace.onDidChangeTextDocument(async event => {
+        const editor = vscode.window.activeTextEditor;
+        if (editor) decorateTitlesAndSubtitles(editor);
+    });
+
+    const decorateOnSettingsUpdate = vscode.workspace.onDidChangeConfiguration(event => {
+        if (event.affectsConfiguration('code-titler')) {
+            const editor = vscode.window.activeTextEditor;
+            if (editor) decorateTitlesAndSubtitles(editor);
+        }
+    });
+
+    const decorateOnActiveEditor = vscode.window.onDidChangeActiveTextEditor(editor => {
+        if (editor) decorateTitlesAndSubtitles(editor);
+    });
+
     // ------------------------------------------------------ //
     // ------------- SUBTITLE KEYBINDED FUNCTION ------------ //
     // ------------------------------------------------------ //
@@ -15,10 +36,11 @@ export function activate(context: vscode.ExtensionContext) {
             const subtitle = getSubtitle(text, language);
 
             editor.edit(editBuilder => {
-                editBuilder.replace(selection, subtitle);
+                editBuilder.replace(selection, subtitle + '\n');
             });
         }
     });
+
     // ------------------------------------------------------ //
     // -------------- TITLE KEYBINDED FUNCTION  ------------- //
     // ------------------------------------------------------ //
@@ -80,7 +102,15 @@ export function activate(context: vscode.ExtensionContext) {
     // ------------------ EXPORT FUNCTIONS ------------------ //
     // ------------------------------------------------------ //
 
-    context.subscriptions.push(inputCodeTitler, keySubtitle, keyTitle);
+    context.subscriptions.push(
+        inputCodeTitler,
+        keySubtitle,
+        keyTitle,
+        decorateOnChange,
+        decorateOnSettingsUpdate,
+        decorateOnActiveEditor
+    );
 }
 
 export function deactivate() {}
+// test
