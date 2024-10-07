@@ -2,6 +2,13 @@ import * as vscode from 'vscode';
 import {getSubtitle, getTitle, decorateTitlesAndSubtitles} from './functions';
 import {getFileLanguage, getLine} from './helpers';
 
+/**
+ * To prevent multiple decorations being created and applyed to the same editor
+ * This global variable is used as a single decoration reference that is cleared
+ * and updated everytime something changes
+ */
+let activeDecoration: vscode.TextEditorDecorationType | undefined;
+
 export function activate(context: vscode.ExtensionContext) {
     // ------------------------------------------------------ //
     // ------------------- EVENT LISTENERS ------------------ //
@@ -10,18 +17,24 @@ export function activate(context: vscode.ExtensionContext) {
 
     const decorateOnChange = vscode.workspace.onDidChangeTextDocument(async event => {
         const editor = vscode.window.activeTextEditor;
-        if (editor) decorateTitlesAndSubtitles(editor);
+        if (editor) {
+            activeDecoration = decorateTitlesAndSubtitles(editor, activeDecoration);
+        }
     });
 
     const decorateOnSettingsUpdate = vscode.workspace.onDidChangeConfiguration(event => {
         if (event.affectsConfiguration('code-titler')) {
             const editor = vscode.window.activeTextEditor;
-            if (editor) decorateTitlesAndSubtitles(editor);
+            if (editor) {
+                activeDecoration = decorateTitlesAndSubtitles(editor, activeDecoration);
+            }
         }
     });
 
     const decorateOnActiveEditor = vscode.window.onDidChangeActiveTextEditor(editor => {
-        if (editor) decorateTitlesAndSubtitles(editor);
+        if (editor) {
+            activeDecoration = decorateTitlesAndSubtitles(editor, activeDecoration);
+        }
     });
 
     // ------------------------------------------------------ //
@@ -70,6 +83,7 @@ export function activate(context: vscode.ExtensionContext) {
             const language = getFileLanguage(editor);
 
             // ------------------ SUBTITLE TRIGGER ------------------ //
+
             if (text.trim() === '$st') {
                 setTimeout(async () => {
                     const subtitleInput = await vscode.window.showInputBox({

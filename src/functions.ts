@@ -56,7 +56,10 @@ export const getTitle = (rawTitle: string, language: keyof Languages): string =>
  * Decorates the titles and subtitles in the active text editor
  * @param editor Takes the active text editor and decorates the titles and subtitles
  */
-export const decorateTitlesAndSubtitles = (editor: vscode.TextEditor): void => {
+export const decorateTitlesAndSubtitles = (
+    editor: vscode.TextEditor,
+    activeDecoration?: vscode.TextEditorDecorationType
+): vscode.TextEditorDecorationType => {
     // --------------- GETTING SETTINGS CONFIG -------------- //
     const config = vscode.workspace.getConfiguration('code-titler');
     const personalisedTags = config.get<boolean>('personalisedTags', false);
@@ -74,9 +77,11 @@ export const decorateTitlesAndSubtitles = (editor: vscode.TextEditor): void => {
 
     const openTag = `${open} ${fill}`;
     const closeTag = `${fill} ${close}`;
+    console.log(openTag, closeTag);
 
     // --------------- CLEAN UP OLD DECORATION -------------- //
 
+    if (activeDecoration) activeDecoration.dispose();
     const titleDecoration = getDecoration();
     const ranges: vscode.Range[] = [];
 
@@ -87,16 +92,19 @@ export const decorateTitlesAndSubtitles = (editor: vscode.TextEditor): void => {
         const lineText = currentLine.text;
 
         const openTagIndex = lineText.indexOf(openTag);
-        const closeTagIndex = lineText.indexOf(closeTag);
+        const closeTagIndex = lineText.indexOf(closeTag) + closeTag.length;
 
         if (openTagIndex === -1 || closeTagIndex === -1) continue;
+        console.log(openTagIndex, closeTagIndex);
 
         const startPos = new vscode.Position(lineIndex, openTagIndex);
-        const endPos = new vscode.Position(lineIndex, closeTagIndex + 4);
+        const endPos = new vscode.Position(lineIndex, closeTagIndex);
         const range = new vscode.Range(startPos, endPos);
 
         ranges.push(range);
     }
 
     editor.setDecorations(titleDecoration, ranges);
+
+    return titleDecoration;
 };
