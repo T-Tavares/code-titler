@@ -63,13 +63,15 @@ Personalised tags => In case there are another language and syntax that is not s
 
 ![Code Titler - Settigns](./src/assets/code-titler-settings.gif)
 
+There's also a styling settings that you can change colour, font style, font weight and background colour of the titles.
+
+![Code Titler - Style and Decoration](./src/assets/code-titler-style-decoration.gif)
+
 ## Known Issues
 
-For now if you use more than one character on the fill the titles will get a different lenght. I'm planning on fixing that for version 2
+-   For now if you use more than one character on the fill the titles will get a different lenght. I'm planning on fixing that for version 2
 
-Because of a the font sizes on VSCode vs Github, this extension will not work well on .md files.
-
-Might look great on your VSCode, while you're writting your readme.md. But once You push it to github I'll get some random sizes for each part of the titles.
+-   Because of a the font sizes on VSCode vs Github, this extension will not work well on .md files. Might look great on your VSCode, while you're writting your readme.md. But once You push it to github I'll get some random sizes for each part of the titles.
 
 ## Release Notes
 
@@ -83,6 +85,10 @@ First minor update after some testing.
 
 -   Trim whitespaces on beginning and ending of title
 -   Added Titles to repo.
+
+### 0.2.0
+
+-   Added styling to title - Colour, Font Weight, Font Style and Background colour
 
 ## Thoughts?
 
