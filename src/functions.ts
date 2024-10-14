@@ -17,17 +17,23 @@ export const getSubtitle = (rawTitle: string, language: keyof Languages): string
 
     // ------------------ GET SUBTITLE SIZE ----------------- //
 
-    const title = rawTitle.trim();
-    const textLength = title.length;
-    const isTitleOdd = textLength % 2 !== 0;
-    const fillAdjustment = textLength % 2 === 0 ? 8 : 7;
-    const fillLength = (length - textLength - fillAdjustment) / 2;
+    const title = rawTitle.trim(); //                                  Remove white space
+    const textLength = title.length; //                                Get title length
+    const isTitleOdd = textLength % 2 !== 0; //                        Check if title length is odd
+    const fillAdjustment = textLength % 2 === 0 ? 8 : 7; //            Compensate for odd title length
+    const fillLength = (length - textLength - fillAdjustment) / 2; //  Calculate the fill length
+    const titleWhiteSpace = textLength === 0 ? fill : ' '; //          Compensate for empty title
 
     // ------------------- BUILD SUBTITLE ------------------- //
 
     const leftfillOutput = fill.repeat(fillLength);
     const rightFillOutput = isTitleOdd ? leftfillOutput.slice(1) : leftfillOutput; // Compensate for odd title length
-    const subtitleOutput = `${open} ${leftfillOutput} ${title.toUpperCase()} ${rightFillOutput} ${close}`;
+    /* 
+        The subtitle output is a bit busy but if it helps to read. Look a it as a mirror
+        openTag + leftFill + titleWhiteSpace + TITLE + titleWhiteSpace + rightFill + closeTag
+        Where the titleWhiteSpace is a compensation in case the title is a blank. It completes the fill
+    */
+    const subtitleOutput = `${open} ${leftfillOutput}${titleWhiteSpace}${title.toUpperCase()}${titleWhiteSpace}${rightFillOutput} ${close}`;
 
     return subtitleOutput;
 };
@@ -77,7 +83,6 @@ export const decorateTitlesAndSubtitles = (
 
     const openTag = `${open} ${fill}`;
     const closeTag = `${fill} ${close}`;
-    console.log(openTag, closeTag);
 
     // --------------- CLEAN UP OLD DECORATION -------------- //
 
@@ -95,7 +100,6 @@ export const decorateTitlesAndSubtitles = (
         const closeTagIndex = lineText.indexOf(closeTag) + closeTag.length;
 
         if (openTagIndex === -1 || closeTagIndex === -1) continue;
-        console.log(openTagIndex, closeTagIndex);
 
         const startPos = new vscode.Position(lineIndex, openTagIndex);
         const endPos = new vscode.Position(lineIndex, closeTagIndex);

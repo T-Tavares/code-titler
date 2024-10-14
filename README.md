@@ -51,6 +51,28 @@ There are two ways to build your titles and subtitles.
 
 ![Code Titler - Example TS](./src/assets/code-titler-ts.gif)
 
+You can Resize the titles on a document. For that hit the shortcut:
+
+```
+Resize => (Ctrl  + Cmd + r ) for Mac users
+Resize => (Ctrl  + Alt + r ) for Windows users
+```
+
+That will only change the titles on that active document.
+
+## How does it work
+
+Code Titler looks for a pattern built from a : CommentTag + fill
+It will look for both open and close tags to register it as a title.
+
+```
+Title Pattern
+openTag + fill + Title + fill + closeTag
+```
+
+The extension does not keep any Log of the titles. (Maybe on a future version I might try to create a "Page of Contents")
+For now It'll create uniform size titles, read the document to apply decoration to the titles, read the document to resize the titles.
+
 ## Extension Settings
 
 You can change the fill, length and personalise open and close tabs.

@@ -85,7 +85,6 @@ export const LANGUAGES: Languages = {
 export const getLine = (editor: VSCodeEditor): VSCodeLine => {
     const document: VSCodeDocument = editor.document;
     const range = editor.selection.active.line;
-    console.log('helper.ts - line error ' + range);
 
     const selection: VSCodeRange = document.lineAt(range).range;
     const text = document.getText(selection);

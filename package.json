@@ -31,6 +31,12 @@
                 "key": "ctrl+alt+/",
                 "mac": "ctrl+cmd+/",
                 "when": "editorTextFocus"
+            },
+            {
+                "command": "code-titler.key-resizeTitles",
+                "key": "ctrl+alt+r",
+                "mac": "ctrl+cmd+r",
+                "when": "editorTextFocus"
             }
         ],
         "commands": [

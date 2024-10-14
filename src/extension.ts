@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import {getSubtitle, getTitle, decorateTitlesAndSubtitles} from './functions';
-import {getFileLanguage, getLine} from './helpers';
+import {getFileLanguage, getLine, getConfigSettings} from './helpers';
 
 /**
  * To prevent multiple decorations being created and applyed to the same editor
@@ -72,7 +72,58 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     // ------------------------------------------------------ //
-    // ---------- SUBTITLE - $ST "SNIPPET" FUNCTION --------- //
+    // ---------- REZISE TITLES KEYBINDED FUNCTION ---------- //
+    // ------------------------------------------------------ //
+
+    const resizeTitles = vscode.commands.registerCommand('code-titler.key-resizeTitles', () => {
+        const editor = vscode.window.activeTextEditor;
+        const {fill, openTag, closeTag} = getConfigSettings();
+
+        if (editor) {
+            const document = editor.document;
+            const lineCount = editor.document.lineCount;
+            const open = `${openTag} ${fill}`;
+            const close = `${fill} ${closeTag}`;
+            const language = getFileLanguage(editor);
+
+            // ---- VARIABLE TO HOLD ALL THE NEWTITLES AND RANGES --- //
+
+            const titlesToResize: {range: vscode.Range; newTitle: string}[] = [];
+
+            // ------------ LOOPS THROUGH DOCUMENT LINES ------------ //
+
+            for (let line = 0; line < lineCount; line++) {
+                const lineText = document.lineAt(line).text.trim();
+                const range = document.lineAt(line).range;
+
+                if (lineText.includes(open) && lineText.includes(close)) {
+                    const titleArray = lineText.split(' ');
+                    const titleLength = titleArray.length;
+
+                    const rawTitle = titleArray
+                        .slice(2, titleLength - 2)
+                        .join(' ')
+                        .trim();
+
+                    const newTitle = getSubtitle(rawTitle, language);
+
+                    titlesToResize.push({range, newTitle});
+                }
+            }
+
+            // ----------- CHANGES TITLES ON ACTIVE EDITOR ---------- //
+
+            editor.edit(editBuilder => {
+                for (const title of titlesToResize) {
+                    editBuilder.replace(title.range, title.newTitle);
+                }
+            });
+        }
+    });
+
+    // ------------------------------------------------------ //
+    // ----------------- TITLE AND SUBTITLE ----------------- //
+    // ----------------- $ SNIPPET FUNCTION ----------------- //
     // ------------------------------------------------------ //
 
     const inputCodeTitler = vscode.workspace.onDidChangeTextDocument(async event => {
@@ -120,6 +171,7 @@ export function activate(context: vscode.ExtensionContext) {
         inputCodeTitler,
         keySubtitle,
         keyTitle,
+        resizeTitles,
         decorateOnChange,
         decorateOnSettingsUpdate,
         decorateOnActiveEditor
