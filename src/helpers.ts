@@ -44,6 +44,10 @@ export const getConfigSettings = () => {
 const {openTag, closeTag} = getConfigSettings();
 export const LANGUAGES: Languages = {
     javascript: {open: '//', close: '//'},
+    javascriptreact: {open: '//', close: '//'},
+    ejs: {open: '<!--', close: '-->'},
+    bat: {open: 'rem', close: 'rem'},
+    markdown: {open: '<!--', close: '-->'},
     typescript: {open: '//', close: '//'},
     python: {open: '#', close: '#'},
     java: {open: '//', close: '//'},

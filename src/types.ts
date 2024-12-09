@@ -21,6 +21,10 @@ export interface DecorationOptions {
 
 export interface Languages {
     javascript: {open: string; close: string};
+    javascriptreact: {open: string; close: string};
+    ejs: {open: string; close: string};
+    bat: {open: string; close: string};
+    markdown: {open: string; close: string};
     typescript: {open: string; close: string};
     python: {open: string; close: string};
     java: {open: string; close: string};

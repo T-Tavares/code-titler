@@ -112,6 +112,11 @@ First minor update after some testing.
 
 -   Added styling to title - Colour, Font Weight, Font Style and Background colour
 
+### 0.2.4
+
+-   Added / Fixed javascript react titles not working
+-   Now if the language is not on the list of supported ones the title will fall back to the personalised tag
+
 ## Thoughts?
 
 Anyone that is keen to collaborate is welcome. Feel free to send me a message or drop an issue and we can build stuff together.

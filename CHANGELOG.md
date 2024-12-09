@@ -7,6 +7,7 @@ Open an Github Issue and let's make this extension better.
 ## Updates
 
 -   Add colour and style to your titles and subtitles - Colour, Font Weight, Font Style and Background colour
+-   Now if the language is not on the list of supported ones the title will fall back to the personalised tag
 
 ## Unreleased
 

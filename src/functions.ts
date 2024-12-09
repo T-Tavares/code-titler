@@ -13,6 +13,7 @@ export const getSubtitle = (rawTitle: string, language: keyof Languages): string
 
     const {personalisedTags, fill, length} = getConfigSettings();
     const languageSelector = personalisedTags ? 'personalised' : language;
+    console.log(languageSelector);
     let {open, close} = LANGUAGES[languageSelector];
 
     // ------------------ GET SUBTITLE SIZE ----------------- //
@@ -49,7 +50,7 @@ export const getTitle = (rawTitle: string, language: keyof Languages): string =>
 
     const {personalisedTags, fill, length} = getConfigSettings();
     const languageSelector = personalisedTags ? 'personalised' : language;
-    let {open, close} = LANGUAGES[languageSelector];
+    let {open, close} = LANGUAGES[languageSelector] ? LANGUAGES[languageSelector] : LANGUAGES['personalised'];
 
     // --------------------- BUILD TITLE -------------------- //
 
