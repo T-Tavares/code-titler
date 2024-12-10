@@ -14,3 +14,4 @@ Open an Github Issue and let's make this extension better.
 -   Keep Code on the same identation it was created/called.
 -   Accept more than one character on the title filling setting.
 -   Recalculate size of current titles.
+-   Recognise JSX within a react component and add the title with the proper syntax

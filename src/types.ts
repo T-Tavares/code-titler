@@ -26,6 +26,7 @@ export interface Languages {
     bat: {open: string; close: string};
     markdown: {open: string; close: string};
     typescript: {open: string; close: string};
+    typescriptreact: {open: string; close: string};
     python: {open: string; close: string};
     java: {open: string; close: string};
     cpp: {open: string; close: string};
@@ -38,6 +39,8 @@ export interface Languages {
     rust: {open: string; close: string};
     html: {open: string; close: string};
     css: {open: string; close: string};
+    scss: {open: string; close: string};
+    sass: {open: string; close: string};
     sql: {open: string; close: string};
     shellscript: {open: string; close: string};
     powershell: {open: string; close: string};

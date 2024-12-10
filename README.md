@@ -91,6 +91,13 @@ There's also a styling settings that you can change colour, font style, font wei
 
 ## Known Issues
 
+-   Because of the way the extension is reading the language used and setting it it's comment syntax. One limitation is when using it on JSX / TSX files. The titles will look fine on the function or out of it, but within JXS (On react components) the comments have to follow {/\* \*/} this syntax And we are still working on a way to detect that and make it automatic. For now, the easiest way around it is to place the title and manually comment it.
+
+```
+    Alt + / or Cmd + / are the commands to comment on VSCode.
+    It does look a bit funky, but I'm thinking on a solution for that. (Suggestions are welcome.)
+```
+
 -   For now if you use more than one character on the fill the titles will get a different lenght. I'm planning on fixing that for version 2
 
 -   Because of a the font sizes on VSCode vs Github, this extension will not work well on .md files. Might look great on your VSCode, while you're writting your readme.md. But once You push it to github I'll get some random sizes for each part of the titles.
@@ -114,8 +121,11 @@ First minor update after some testing.
 
 ### 0.2.4
 
--   Added / Fixed javascript react titles not working
 -   Now if the language is not on the list of supported ones the title will fall back to the personalised tag
+
+### 0.3.2
+
+-   Added / Fixed Javascript React and Typescript React titles not working
 
 ## Thoughts?
 
